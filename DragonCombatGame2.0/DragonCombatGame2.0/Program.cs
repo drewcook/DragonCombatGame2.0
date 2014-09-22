@@ -26,6 +26,8 @@ namespace DragonCombatGame2._0
 
             game.PlayGame();
 
+            //add score to highscores
+            
             //keep console open
             Console.ReadKey();
         }
