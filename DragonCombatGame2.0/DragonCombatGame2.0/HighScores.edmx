@@ -4,17 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DrewModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="DrewModelStoreContainer">
-          <EntitySet Name="HighScores" EntityType="DrewModel.Store.HighScores" store:Type="Tables" Schema="dbo" />
+      <Schema Namespace="spDrewModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="spDrewModelStoreContainer">
+          <EntitySet Name="HighScores" EntityType="spDrewModel.Store.HighScores" store:Type="Tables" Schema="spDrew" />
         </EntityContainer>
         <EntityType Name="HighScores">
           <Key>
             <PropertyRef Name="HighScoreID" />
           </Key>
-          <Property Name="HighScoreID" Type="int" Nullable="false" />
+          <Property Name="HighScoreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Score" Type="int" Nullable="false" />
+          <Property Name="Score" Type="int" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="Game" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -22,17 +22,17 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DrewModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="DrewEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="HighScores" EntityType="DrewModel.HighScore" />
+      <Schema Namespace="spDrewModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="spDrewEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="HighScores" EntityType="spDrewModel.HighScore" />
         </EntityContainer>
         <EntityType Name="HighScore">
           <Key>
             <PropertyRef Name="HighScoreID" />
           </Key>
-          <Property Name="HighScoreID" Type="Int32" Nullable="false" />
+          <Property Name="HighScoreID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Score" Type="Int32" Nullable="false" />
+          <Property Name="Score" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="Game" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
         </EntityType>
@@ -41,9 +41,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DrewModelStoreContainer" CdmEntityContainer="DrewEntities">
+        <EntityContainerMapping StorageEntityContainer="spDrewModelStoreContainer" CdmEntityContainer="spDrewEntities">
           <EntitySetMapping Name="HighScores">
-            <EntityTypeMapping TypeName="DrewModel.HighScore">
+            <EntityTypeMapping TypeName="spDrewModel.HighScore">
               <MappingFragment StoreEntitySet="HighScores">
                 <ScalarProperty Name="HighScoreID" ColumnName="HighScoreID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

@@ -75,12 +75,12 @@ namespace DragonCombatGame2._0
             string playerName = Console.ReadLine();
 
             //create a gateway to the database
-            DrewEntities db = new DrewEntities();
+            spDrewEntities db = new spDrewEntities();
 
             //create a new highscore object
             HighScore newHighscore = new HighScore();
             newHighscore.DateCreated = DateTime.Now;
-            newHighscore.Game = "Dragon Combat";
+            newHighscore.Game = "Dragon Combat 2.0";
             newHighscore.Name = playerName;
             newHighscore.Score = playerScore;
 
@@ -105,10 +105,10 @@ namespace DragonCombatGame2._0
             Console.WriteLine("Dragon Combat High Scores!");
             Console.WriteLine("==============================");
             //create a new connection to the database
-            DrewEntities db = new DrewEntities();
+            spDrewEntities db = new spDrewEntities();
             //get the high score list
             //pull from our HighScores database where the game is "Guess That Number, order by highest score, and only take the top 10 scores
-            List<HighScore> highScoreList = db.HighScores.Where(x => x.Game == "Dragon Combat").OrderBy(x => x.Score).Take(10).ToList();
+            List<HighScore> highScoreList = db.HighScores.Where(x => x.Game == "Dragon Combat 2.0").OrderBy(x => x.Score).Take(10).ToList();
 
             //make a foreach loop to print out these scores to the console
             foreach (var highScore in highScoreList)
