@@ -57,64 +57,66 @@ namespace DragonCombatGame2._0
             if (!this.player.IsAlive)
             {
                 Console.WriteLine(@"You have failed to defeat the dragon, as you have run out of health points.  And the book of all things knowledgeble stays guarded for at least another day...");
+                Console.WriteLine("\n\n====================THE END====================");
             }
             else
             {
                 Console.WriteLine("CONGRATULATIONS!!!!! YOU HAVE DEFEATED THE GIANT, FIRE-BREATHING DRAGON!\n\nYou now make your way over the dying carcass and into the cave.  You come across a glowing book of some sort which you spot on a table.  This is the book of all things knowledgeable!  You grab the book and bring it back down the mountain to your townspeople whom are eagerly waiting for your arrival.  You pull the book out of your sack to show them that everything is going to be just peachy fine for the rest of eternity!  You and your townspeople celebrate over music and grog!!!!");
                 Console.WriteLine("\n\n====================THE END====================");
             }
-            AddHighScore(roundCount);
-            DisplayHighScores();
+            //AddHighScore(roundCount);
+            //DisplayHighScores();
+            Console.WriteLine("\n\n\nPress any key to exit...");
         }
 
-        //add the highscores to the database
-        static void AddHighScore(int playerScore)
-        {
-            //get the name for the player
-            Console.WriteLine("\n\nYour name:\n");
-            string playerName = Console.ReadLine();
+        ////add the highscores to the database
+        //static void AddHighScore(int playerScore)
+        //{
+        //    //get the name for the player
+        //    Console.WriteLine("\n\nYour name:\n");
+        //    string playerName = Console.ReadLine();
 
-            //create a gateway to the database
-            spDrewEntities db = new spDrewEntities();
+        //    //create a gateway to the database
+        //    spDrewEntities db = new spDrewEntities();
 
-            //create a new highscore object
-            HighScore newHighscore = new HighScore();
-            newHighscore.DateCreated = DateTime.Now;
-            newHighscore.Game = "Dragon Combat 2.0";
-            newHighscore.Name = playerName;
-            newHighscore.Score = playerScore;
+        //    //create a new highscore object
+        //    HighScore newHighscore = new HighScore();
+        //    newHighscore.DateCreated = DateTime.Now;
+        //    newHighscore.Game = "Dragon Combat 2.0";
+        //    newHighscore.Name = playerName;
+        //    newHighscore.Score = playerScore;
 
-            //add it to the database
-            db.HighScores.Add(newHighscore);
+        //    //add it to the database
+        //    db.HighScores.Add(newHighscore);
 
 
-            //always save changes, but only need to type this one time
-            db.SaveChanges();
+        //    //always save changes, but only need to type this one time
+        //    db.SaveChanges();
 
-        }
+        //}
 
-        //create a new function to display the highschore
-        static void DisplayHighScores()
-        {
-            //tell user to view highscores
-            Console.WriteLine("\n\nPress any key to view high scores...");
-            //clear console everytime to show highscore on a blank screen
-            Console.ReadKey();
-            Console.Clear();
-            //write the high score text
-            Console.WriteLine("Dragon Combat High Scores!");
-            Console.WriteLine("==============================");
-            //create a new connection to the database
-            spDrewEntities db = new spDrewEntities();
-            //get the high score list
-            //pull from our HighScores database where the game is "Guess That Number, order by highest score, and only take the top 10 scores
-            List<HighScore> highScoreList = db.HighScores.Where(x => x.Game == "Dragon Combat 2.0").OrderBy(x => x.Score).Take(10).ToList();
+        ////create a new function to display the highschore
+        //static void DisplayHighScores()
+        //{
+        //    //tell user to view highscores
+        //    Console.WriteLine("\n\nPress any key to view high scores...");
+        //    //clear console everytime to show highscore on a blank screen
+        //    Console.ReadKey();
+        //    Console.Clear();
+        //    //write the high score text
+        //    Console.WriteLine("Dragon Combat High Scores!");
+        //    Console.WriteLine("==============================");
+        //    //create a new connection to the database
+        //    spDrewEntities db = new spDrewEntities();
+        //    //get the high score list
+        //    //pull from our HighScores database where the game is "Guess That Number, order by highest score, and only take the top 10 scores
+        //    List<HighScore> highScoreList = db.HighScores.Where(x => x.Game == "Dragon Combat 2.0").OrderBy(x => x.Score).Take(10).ToList();
 
-            //make a foreach loop to print out these scores to the console
-            foreach (var highScore in highScoreList)
-            {
-                Console.WriteLine("{0}. {1} - {2} rounds on {3}", highScoreList.IndexOf(highScore) + 1, highScore.Name, highScore.Score, highScore.DateCreated);
-            }
-        }
+        //    //make a foreach loop to print out these scores to the console
+        //    foreach (var highScore in highScoreList)
+        //    {
+        //        Console.WriteLine("{0}. {1} - {2} rounds on {3}", highScoreList.IndexOf(highScore) + 1, highScore.Name, highScore.Score, highScore.DateCreated);
+        //    }
+        //}
     }
 }
